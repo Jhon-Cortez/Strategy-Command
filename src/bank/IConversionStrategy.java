@@ -9,5 +9,6 @@ package bank;
  * @author jhuan
  */
 public interface IConversionStrategy {
+    double convert (double amount);
     
 }

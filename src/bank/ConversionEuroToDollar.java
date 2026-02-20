@@ -8,20 +8,21 @@ package bank;
  *
  * @author jhuan
  */
-public class ConversionMexicanPesosToDollar implements IConversionStrategy {
-    protected double mxnToUsdRate;
+public class ConversionEuroToDollar implements IConversionStrategy{
     
+    protected double eurToUsdRate;
     
-    
-    public ConversionMexicanPesosToDollar(double rate){
+
+    public ConversionEuroToDollar(double rate){
         
     }
     
-    @Override
+     @Override
     public double convert(double amount) {
         
-        return amount * 0.058;
-        
+        return amount * 1.18;
+ 
     }
+
     
 }
