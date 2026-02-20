@@ -10,4 +10,28 @@ package bank;
  */
 public class ConversionContext {
     
+    
+    protected IConversionStrategy strategy;
+    protected String baseCurrency;
+    
+    
+    public ConversionContext(){
+        
+    }
+    
+    public void setStratey(IConversionStrategy strategy){
+        
+    }
+    
+    public void selectStrategy(String sourceCurrency){
+        
+    }
+    
+    public double convertToUSD(double amount ){
+        
+        return amount;
+        
+    }
+    
+
 }
