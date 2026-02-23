@@ -11,21 +11,7 @@ import java.util.ArrayList;
  * @author CHALA RAMIREZ
  */
 public class Bank {
-    private ArrayList<Command> command;
-    
-    public Bank(ArrayList<Command> command) {
-        this.command = command;
-    }
-    
-    public void execute(ArrayList<Command> command) {
-        System.out.println("Comando: " + command);
-    }
-    
-    public void addToQueue(ArrayList<Command> command) {
-        System.out.println("Comando: " + command);
-    }
-
-    public void executeQueue() {
-        System.out.println("Comando: " + command);
+    public void executeCommand(Command command) {
+        command.execute();
     }
 }
