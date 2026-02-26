@@ -11,10 +11,15 @@ package bank;
 public class ConversionColombianPesosToDollar implements IConversionStrategy {
     protected double copToUsdRate;
     
+    
+    
+    public ConversionColombianPesosToDollar(double rate){
+        this.copToUsdRate = rate;
+    }
     @Override
     public double convert(double amount) {
         
-        return amount * 0.00027;
+        return amount * copToUsdRate;
         
     }
     

@@ -23,14 +23,14 @@ public class MoneyDepositCommand implements Command {
     
     @Override
     public void execute() {
-        double convertedAmount = conversionContext.convert(amount);
+        double convertedAmount = convert();
         account.deposit(convertedAmount);
         System.out.println("Depositado: " + convertedAmount);
     }
 
     @Override
     public void undo() {
-        double convertedAmount = conversionContext.convert(amount);
+        double convertedAmount = convert();
         account.withdraw(convertedAmount);
         System.out.println("Depósito revertido: " + convertedAmount);
     }

@@ -14,13 +14,13 @@ public class ConversionMexicanPesosToDollar implements IConversionStrategy {
     
     
     public ConversionMexicanPesosToDollar(double rate){
-        
+        this.mxnToUsdRate = rate;
     }
     
     @Override
     public double convert(double amount) {
         
-        return amount * 0.058;
+        return amount * mxnToUsdRate;
         
     }
     

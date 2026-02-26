@@ -12,9 +12,9 @@ public class MoneyTransferCommand implements Command{
     protected Account account;
     protected double amount;
     protected String sourceCurrency;
-    protected conversionContext conversionContext;
+    protected ConversionContext conversionContext;
 
-    public MoneyTransferCommand(Account account, double amount, String sourceCurrency, conversionContext conversionContext) {
+    public MoneyTransferCommand(Account account, double amount, String sourceCurrency, ConversionContext conversionContext) {
         this.account = account;
         this.amount = amount;
         this.sourceCurrency = sourceCurrency;

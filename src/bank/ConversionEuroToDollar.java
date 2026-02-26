@@ -14,13 +14,13 @@ public class ConversionEuroToDollar implements IConversionStrategy{
     
 
     public ConversionEuroToDollar(double rate){
-        
+        this.eurToUsdRate = rate;
     }
     
      @Override
     public double convert(double amount) {
         
-        return amount * 1.18;
+        return amount * eurToUsdRate;
  
     }
 
