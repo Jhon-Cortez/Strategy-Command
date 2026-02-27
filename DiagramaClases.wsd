@@ -19,8 +19,8 @@ class Account {
     +getId(): int
     +getOwnerNamw(): String
     +getBalanceUSD(): double
-    -validatePositiveAmount()
-    -validateSufficientFunds()
+    -validatePositiveAmount(double amountUSD, String opName): void
+    -validateSufficientFunds(double amountUSD): void
     +deposit(amount: double)
     +withdraw(amount: double)
     +transfer(to: Account, amount: double)
