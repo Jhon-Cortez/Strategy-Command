@@ -9,34 +9,31 @@ package bank;
  * @author CHALA RAMIREZ
  */
 public class MoneyDepositCommand implements Command {
-    protected Account account;
-    protected double amount;
-    protected String sourceCurrency;
-    protected ConversionContext conversionContext;
 
-    public MoneyDepositCommand(Account account, double amount, String sourceCurrency, ConversionContext conversionContext) {
+    private Account account;
+    private double amount;
+    private String sourceCurrency;
+    private ConversionContext conversionContext;
+    private double convertedAmount; 
+    public MoneyDepositCommand(Account account,double amount,String sourceCurrency,ConversionContext conversionContext) {
         this.account = account;
         this.amount = amount;
         this.sourceCurrency = sourceCurrency;
         this.conversionContext = conversionContext;
     }
-    
+
     @Override
     public void execute() {
-        double convertedAmount = convert();
+        conversionContext.selectStrategy(sourceCurrency);
+        convertedAmount = conversionContext.convert(amount);
+
         account.deposit(convertedAmount);
         System.out.println("Depositado: " + convertedAmount);
     }
 
     @Override
     public void undo() {
-        double convertedAmount = convert();
         account.withdraw(convertedAmount);
         System.out.println("Depósito revertido: " + convertedAmount);
-    }
-    
-    public double convert() {
-        conversionContext.selectStrategy(sourceCurrency);
-        return conversionContext.convertToUSD(amount);
     }
 }

@@ -3,9 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package bank;
-
-import java.util.ArrayList;
-
 /**
  *
  * @author CHALA RAMIREZ

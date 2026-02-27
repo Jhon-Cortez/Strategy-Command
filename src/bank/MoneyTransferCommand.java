@@ -8,35 +8,34 @@ package bank;
  *
  * @author CHALA RAMIREZ
  */
-public class MoneyTransferCommand implements Command{
-    protected Account account;
-    protected double amount;
-    protected String sourceCurrency;
-    protected ConversionContext conversionContext;
+public class MoneyTransferCommand implements Command {
 
-    public MoneyTransferCommand(Account account, double amount, String sourceCurrency, ConversionContext conversionContext) {
-        this.account = account;
+    private Account fromAccount;
+    private Account toAccount;
+    private double amount;
+    private String sourceCurrency;
+    private ConversionContext conversionContext;
+    private double convertedAmount;
+
+    public MoneyTransferCommand(Account fromAccount,Account toAccount,double amount,String sourceCurrency,ConversionContext conversionContext) {
+        this.fromAccount = fromAccount;
+        this.toAccount = toAccount;
         this.amount = amount;
         this.sourceCurrency = sourceCurrency;
         this.conversionContext = conversionContext;
     }
-    
+
     @Override
     public void execute() {
-        double convertedAmount = conversionContext.convert(amount);
-        account.transfer(convertedAmount);
+        conversionContext.selectStrategy(sourceCurrency);
+        convertedAmount = conversionContext.convert(amount);
+        fromAccount.transfer(toAccount, convertedAmount);
         System.out.println("Transferido: " + convertedAmount);
     }
 
     @Override
     public void undo() {
-        double convertedAmount = conversionContext.convert(amount);
-        account.revertTransfer(convertedAmount);
+        toAccount.transfer(fromAccount, convertedAmount);
         System.out.println("Transferencia revertida: " + convertedAmount);
     }
-    
-    public double convert() {
-        conversionContext.selectStrategy(sourceCurrency);
-        return conversionContext.convertToUSD(amount);
-    }  
 }

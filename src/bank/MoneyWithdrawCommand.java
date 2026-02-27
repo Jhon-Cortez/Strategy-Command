@@ -13,8 +13,10 @@ public class MoneyWithdrawCommand implements Command {
     protected double amount;
     protected String sourceCurrency;
     protected ConversionContext conversionContext;
-
-    public MoneyWithdrawCommand(Account account, double amount, String sourceCurrency, ConversionContext conversionContext) {
+    private double convertedAmount;
+    public MoneyWithdrawCommand(Account account, double amount,
+                                String sourceCurrency,
+                                ConversionContext conversionContext) {
         this.account = account;
         this.amount = amount;
         this.sourceCurrency = sourceCurrency;
@@ -23,22 +25,14 @@ public class MoneyWithdrawCommand implements Command {
 
     @Override
     public void execute() {
-        double convertedAmount = conversionContext.convert(amount);
+        convertedAmount = conversionContext.convert(amount);
         account.withdraw(convertedAmount);
         System.out.println("Retirado: " + convertedAmount);
     }
 
     @Override
     public void undo() {
-        double convertedAmount = conversionContext.convert(amount);
-        account.deposit(convertedAmount); // El undo de withdraw es depositar
+        account.deposit(convertedAmount);
         System.out.println("Retiro revertido: " + convertedAmount);
     }
-    
-    public double convert() {
-        
-        return 0;
-        
-    }
-    
 }
