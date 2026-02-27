@@ -78,6 +78,7 @@ class ConversionContext {
 ' ===== STRATEGIES =====
 class ConversionEuroToDollar {
     -eurToUsdRate: double
+    +ConversionEuroToDollar()
     +convert(amount: double): double
 }
 
