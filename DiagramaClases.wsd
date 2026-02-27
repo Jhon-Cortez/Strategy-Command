@@ -61,6 +61,8 @@ class MoneyTransferCommand {
     -amount: double
     -conversionContext: ConversionContext
     -convertedAmount: double
+    -sourceCurrency: String
+    +MoneyTransferCommand()
     +execute()
     +undo()
 }
