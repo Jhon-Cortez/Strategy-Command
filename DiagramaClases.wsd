@@ -72,7 +72,7 @@ class ConversionContext {
     -strategy: IConversionStrategy
     +setStrategy(strategy: IConversionStrategy)
     +selectStrategy(sourceCurrency: String)
-    +convertToUSD(amount: double): double
+    +convert(amount: double): double
 }
 
 ' ===== STRATEGIES =====
