@@ -84,6 +84,7 @@ class ConversionEuroToDollar {
 
 class ConversionColombianPesosToDollar {
     -copToUsdRate: double
+    +ConversionColombianPesosToDollar()
     +convert(amount: double): double
 }
 
