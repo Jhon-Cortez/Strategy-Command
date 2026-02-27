@@ -12,6 +12,15 @@ interface IConversionStrategy {
 
 ' ===== CORE =====
 class Account {
+    -id: int
+    -ownerName: String 
+    -balance: double
+    +Account()
+    +getId(): int
+    +getOwnerNamw(): String
+    +getBalanceUSD(): double
+    -validatePositiveAmount()
+    -validateSufficientFunds()
     +deposit(amount: double)
     +withdraw(amount: double)
     +transfer(to: Account, amount: double)
