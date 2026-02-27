@@ -1,0 +1,107 @@
+@startuml
+
+' ===== INTERFACES =====
+interface Command {
+    +execute()
+    +undo()
+}
+
+interface IConversionStrategy {
+    +convert(amount: double): double
+}
+
+' ===== CORE =====
+class Account {
+    +deposit(amount: double)
+    +withdraw(amount: double)
+    +transfer(to: Account, amount: double)
+}
+
+class Bank {
+    +executeCommand(command: Command)
+}
+
+class Main
+
+' ===== COMMANDS =====
+class MoneyDepositCommand {
+    -account: Account
+    -amount: double
+    -sourceCurrency: String
+    -conversionContext: ConversionContext
+    +execute()
+    +undo()
+    -convert(): double
+}
+
+class MoneyWithdrawCommand {
+    -account: Account
+    -amount: double
+    -conversionContext: ConversionContext
+    +execute()
+    +undo()
+}
+
+class MoneyTransferCommand {
+    -fromAccount: Account
+    -toAccount: Account
+    -amount: double
+    -conversionContext: ConversionContext
+    -convertedAmount: double
+    +execute()
+    +undo()
+}
+
+' ===== STRATEGY CONTEXT =====
+class ConversionContext {
+    -strategy: IConversionStrategy
+    +setStrategy(strategy: IConversionStrategy)
+    +selectStrategy(sourceCurrency: String)
+    +convertToUSD(amount: double): double
+}
+
+' ===== STRATEGIES =====
+class ConversionEuroToDollar {
+    -eurToUsdRate: double
+    +convert(amount: double): double
+}
+
+class ConversionColombianPesosToDollar {
+    -copToUsdRate: double
+    +convert(amount: double): double
+}
+
+class ConversionMexicanPesosToDollar {
+    -mxnToUsdRate: double
+    +convert(amount: double): double
+}
+
+' ===== RELATIONSHIPS =====
+
+' Command pattern
+Command <|.. MoneyDepositCommand
+Command <|.. MoneyWithdrawCommand
+Command <|.. MoneyTransferCommand
+Bank --> Command : executes
+
+' Account usage
+MoneyDepositCommand --> Account
+MoneyWithdrawCommand --> Account
+MoneyTransferCommand --> Account
+
+' Strategy pattern
+IConversionStrategy <|.. ConversionEuroToDollar
+IConversionStrategy <|.. ConversionColombianPesosToDollar
+IConversionStrategy <|.. ConversionMexicanPesosToDollar
+
+ConversionContext --> IConversionStrategy
+MoneyDepositCommand --> ConversionContext
+MoneyWithdrawCommand --> ConversionContext
+MoneyTransferCommand --> ConversionContext
+
+' Main usage
+Main --> Bank
+Main --> Account
+Main --> ConversionContext
+
+@enduml
