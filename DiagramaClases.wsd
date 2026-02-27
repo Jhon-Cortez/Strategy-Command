@@ -48,7 +48,9 @@ class MoneyDepositCommand {
 class MoneyWithdrawCommand {
     -account: Account
     -amount: double
+    -sourceCurrency: String
     -conversionContext: ConversionContext
+    +MoneyWithdrawCommand()
     +execute()
     +undo()
 }
