@@ -1,5 +1,5 @@
 # Strategy-Command
 ## Integrantes:
-### Jhon Jairo Cortez
-### Brayan Estiven Paitño
+### Jhon Jairo Cortez Vargas
+### Brayan Estiven Patiño Cabrera
 ### Juan Pablo Chala Ramirez
